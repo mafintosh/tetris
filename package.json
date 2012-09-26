@@ -1,6 +1,6 @@
 {
 	"name":"tetris",
-	"version":"0.1.5",
+	"version":"0.1.6",
 	"description":"play tetris in your terminal",
 	"repository":"git@github.com:mafintosh/tetris.git",
 	"keywords":["tetris","terminal","cli"],
