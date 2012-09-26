@@ -12,4 +12,4 @@ Simply open a terminal and run `tetris`
 
 	$ tetris
 
-It even works over ssh so you can tetris while you do ops
+It even works over ssh so you can tetris while you ops
