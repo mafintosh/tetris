@@ -122,6 +122,8 @@ var selectFigure = function() {
 		}
 	}
 	nextColor = 1+((Math.random()*5)|0);
+	y = -figure.length;
+	x = ((WIDTH / 2) - (figure.length / 2)) | 0;
 };
 var getScore = function() {
 	var color = 1+(((score / 100)|0)%5);
@@ -271,8 +273,6 @@ var loop = function() {
 		return;
 	}
 	selectFigure();
-	y = -figure.length;
-	x = ((WIDTH / 2) - (figure.length / 2)) | 0;
 	setTimeout(loop, speed);
 };
 
@@ -300,14 +300,17 @@ process.stdin.on('keypress', function(ch, key) {
 		moveFigure(-1, 0);
 	}
 	if (key.name === 'down') {
-		score++
-		moveFigure(0, 1);
+		if (moveFigure(0, 1)) {
+			score++	
+		}
 	}
 	if (key.name === 'up') {
 		rotateFigure(1);
 	}
 	if (key.name === 'space') {
-		rotateFigure(1);
+		while (moveFigure(0, 1)) {
+			score++;
+		}
 	}
 });
 process.stdin.resume();
