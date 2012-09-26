@@ -1,0 +1,13 @@
+{
+	"name":"tetris",
+	"version":"0.1.4",
+	"description":"play tetris in your terminal",
+	"keywords":["tetris","terminal","cli"],
+	"bin":{
+		"tetris":"./index.js"
+	},
+	"dependencies":{
+		"clivas":"0.1.x",
+		"keypress":"0.1.x"
+	}
+}
