@@ -124,6 +124,13 @@ var selectFigure = function() {
 	nextColor = 1+((Math.random()*5)|0);
 	y = -figure.length;
 	x = ((WIDTH / 2) - (figure.length / 2)) | 0;
+
+	var btm = figure.length-1;
+
+	while (allEmpty(figure[btm])) {
+		y++;
+		btm--;
+	}
 };
 var getScore = function() {
 	var color = 1+(((score / 100)|0)%5);
@@ -198,6 +205,11 @@ var line = function() {
 		arr[i] = 0;
 	}
 	return arr;
+};
+var allEmpty = function(arr) {
+	return !arr.some(function(val) {
+		return val;
+	});
 };
 var hasEmpty = function(arr) {
 	return arr.some(function(val) {
@@ -301,7 +313,7 @@ process.stdin.on('keypress', function(ch, key) {
 	}
 	if (key.name === 'down') {
 		if (moveFigure(0, 1)) {
-			score++	
+			score++
 		}
 	}
 	if (key.name === 'up') {
