@@ -77,7 +77,7 @@ var NUMBERS = [
 		'  x',
 		'  x'
 	]
-]
+];
 var FIGURES = [
 	[
 		[0,1,0],
@@ -111,7 +111,7 @@ var FIGURES = [
 ];
 
 var nextFigure = (Math.random()*FIGURES.length)|0;
-var nextColor = 1+((Math.random()*5)|0);;
+var nextColor = 1+((Math.random()*5)|0);
 
 var selectFigure = function() {
 	figure = FIGURES[nextFigure];
@@ -313,7 +313,7 @@ process.stdin.on('keypress', function(ch, key) {
 	}
 	if (key.name === 'down') {
 		if (moveFigure(0, 1)) {
-			score++
+			score++;
 		}
 	}
 	if (key.name === 'up') {
