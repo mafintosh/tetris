@@ -5,6 +5,10 @@ var keypress = require('keypress');
 
 var WIDTH = 15;
 var HEIGHT = 20;
+// ZEN is only true if an argument --zen or -z is passed
+var ZEN = process.argv.reduce(function(bool, arg){
+	return bool || arg === '--zen' || arg === '-z'
+}, false);
 
 clivas.alias('box-color', 'inverse+cyan');
 clivas.alias('full-width', 2*WIDTH+4);
@@ -243,7 +247,7 @@ var removeLines = function() {
 			modifier += 150;
 		}
 		modifier *= 2;
-		speed += 10;
+		if (!ZEN) speed += 10;
 	}
 	score += modifier;
 };
@@ -290,10 +294,12 @@ var loop = function() {
 
 var speed = 600;
 
-setInterval(function() {
-	speed -= 20;
-	speed = Math.max(speed, 50);
-}, 10000);
+if (!ZEN) {
+	setInterval(function() {
+		speed -= 20;
+		speed = Math.max(speed, 50);
+	}, 10000);
+}
 
 setTimeout(loop, speed);
 
