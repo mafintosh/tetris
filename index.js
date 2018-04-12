@@ -82,6 +82,13 @@ var NUMBERS = [
 		'  x'
 	]
 ];
+var ZENTITLE = [
+	'xxx xxx x   x',
+	'  x x   xx  x',
+	' x  xxx x x x',
+	'x   x   x  xx',
+	'xxx xxx x   x'
+];
 var FIGURES = [
 	[
 		[0,1,0],
@@ -149,6 +156,16 @@ var getScore = function() {
 		});
 		return result;
 	}, []);
+};
+
+var getZenTitle = function() {
+	var result = [];
+
+	ZENTITLE.forEach(function(line, i) {
+		result[i] = (result[i] ? result[i] + ' ' : '');
+		result[i] += ' '+line.replace(/x/g, '{2+color-5}').replace(/ /g, '  ');
+	});
+	return result;
 };
 
 var board = [];
@@ -255,7 +272,11 @@ var removeLines = function() {
 var draw = function() {
 	clivas.clear();
 
-	var scoreDraw = getScore();
+	if (!ZEN){
+		var scoreDraw = getScore();
+	} else {
+		var scoreDraw = getZenTitle();
+	}
 
 	clivas.line('');
 	clivas.line(' {full-width+box-color}');
