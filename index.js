@@ -5,10 +5,9 @@ var keypress = require('keypress');
 
 var WIDTH = 15;
 var HEIGHT = 20;
-// ZEN is only true if an argument --zen or -z is passed
-var ZEN = process.argv.reduce(function(bool, arg){
-	return bool || arg === '--zen' || arg === '-z'
-}, false);
+var ZEN = !!process.argv.find(function(arg) {
+	return arg === '--zen' || arg === '-z'
+});
 
 clivas.alias('box-color', 'inverse+cyan');
 clivas.alias('full-width', 2*WIDTH+4);
