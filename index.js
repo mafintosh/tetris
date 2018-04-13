@@ -5,6 +5,9 @@ var keypress = require('keypress');
 
 var WIDTH = 15;
 var HEIGHT = 20;
+var ZEN = !!process.argv.find(function(arg) {
+	return arg === '--zen' || arg === '-z'
+});
 
 clivas.alias('box-color', 'inverse+cyan');
 clivas.alias('full-width', 2*WIDTH+4);
@@ -78,6 +81,13 @@ var NUMBERS = [
 		'  x'
 	]
 ];
+var ZENTITLE = [
+	'xxx xxx x   x',
+	'  x x   xx  x',
+	' x  xxx x x x',
+	'x   x   x  xx',
+	'xxx xxx x   x'
+];
 var FIGURES = [
 	[
 		[0,1,0],
@@ -145,6 +155,16 @@ var getScore = function() {
 		});
 		return result;
 	}, []);
+};
+
+var getZenTitle = function() {
+	var result = [];
+
+	ZENTITLE.forEach(function(line, i) {
+		result[i] = (result[i] ? result[i] + ' ' : '');
+		result[i] += ' '+line.replace(/x/g, '{2+color-5}').replace(/ /g, '  ');
+	});
+	return result;
 };
 
 var board = [];
@@ -243,7 +263,7 @@ var removeLines = function() {
 			modifier += 150;
 		}
 		modifier *= 2;
-		speed += 10;
+		if (!ZEN) speed += 10;
 	}
 	score += modifier;
 };
@@ -251,7 +271,11 @@ var removeLines = function() {
 var draw = function() {
 	clivas.clear();
 
-	var scoreDraw = getScore();
+	if (!ZEN){
+		var scoreDraw = getScore();
+	} else {
+		var scoreDraw = getZenTitle();
+	}
 
 	clivas.line('');
 	clivas.line(' {full-width+box-color}');
@@ -290,10 +314,12 @@ var loop = function() {
 
 var speed = 600;
 
-setInterval(function() {
-	speed -= 20;
-	speed = Math.max(speed, 50);
-}, 10000);
+if (!ZEN) {
+	setInterval(function() {
+		speed -= 20;
+		speed = Math.max(speed, 50);
+	}, 10000);
+}
 
 setTimeout(loop, speed);
 

@@ -13,3 +13,9 @@ Simply open a terminal and run `tetris`
 	$ tetris
 
 It even works over ssh so you can tetris while you ops
+
+## Zen mode
+
+To play without the speed increasing, run in zen mode
+
+	$ tetris --zen
