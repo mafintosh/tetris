@@ -328,7 +328,9 @@ process.stdin.on('keypress', function(ch, key) {
 process.stdin.resume();
 
 try {
-	process.stdin.setRawMode(true);
+    process.stdin.setRawMode(true);
 } catch (err) {
-	require('tty').setRawMode(true);
+    if(process.stdin.isTTY){
+         process.stdin.setRawMode(true);
+    }
 }
