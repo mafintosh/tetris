@@ -305,18 +305,18 @@ keypress(process.stdin);
 
 process.stdin.on('keypress', function(ch, key) {
 	if (key.name === 'c' && key.ctrl) return process.exit(0);
-	if (key.name === 'right' || key.name === 'l') {
+	if (key.name === 'right' || key.name === 'l' || key.name === 'd') {
 		moveFigure(1, 0);
 	}
-	if (key.name === 'left' || key.name === 'h') {
+	if (key.name === 'left' || key.name === 'h' || key.name === 'a') {
 		moveFigure(-1, 0);
 	}
-	if (key.name === 'down' || key.name === 'j') {
+	if (key.name === 'down' || key.name === 'j' || key.name === 's') {
 		if (moveFigure(0, 1)) {
 			score++;
 		}
 	}
-	if (key.name === 'up' || key.name === 'k') {
+	if (key.name === 'up' || key.name === 'k' || key.name === 'w') {
 		rotateFigure(1);
 	}
 	if (key.name === 'space' || (key.name === 'g' && key.shift)) {
